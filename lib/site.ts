@@ -18,12 +18,16 @@ export function getSiteUrlObject() {
   return new URL(getSiteUrl());
 }
 
+/** Public contact address — set `CONTACT_TO_EMAIL` in the environment (server-only). */
+export function getContactEmail(): string {
+  return process.env.CONTACT_TO_EMAIL?.trim() ?? "";
+}
+
 export const site = {
   brand: "Casa Uma",
   personName: "Mariana Souto",
   professionalTitle: "Psicoterapeuta integrativa",
   colNumber: "36066",
-  email: "marucb03@gmail.com",
   /** Primary SEO title — name + service + brand for “who is this” discovery */
   homeTitle:
     "Mariana Souto · Psicoterapia integrativa online | Casa Uma",
@@ -75,6 +79,7 @@ export function buildHomePageJsonLd() {
   const personId = `${url}/#person`;
   const websiteId = `${url}/#website`;
   const sameAs = getSameAs();
+  const contactEmail = getContactEmail();
 
   return {
     "@context": "https://schema.org",
@@ -108,7 +113,7 @@ export function buildHomePageJsonLd() {
         "@id": personId,
         name: site.personName,
         jobTitle: site.professionalTitle,
-        email: site.email,
+        ...(contactEmail ? { email: contactEmail } : {}),
         image: `${url}/mariana.jpg`,
         url,
         worksFor: { "@id": orgId },

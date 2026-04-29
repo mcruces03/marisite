@@ -6,7 +6,12 @@ import { BlogPreview } from "@/components/sections/BlogPreview";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
-import { buildHomePageJsonLd, getSiteUrl, site } from "@/lib/site";
+import {
+  buildHomePageJsonLd,
+  getContactEmail,
+  getSiteUrl,
+  site
+} from "@/lib/site";
 
 const homeCanonical = getSiteUrl();
 
@@ -44,7 +49,7 @@ export default function HomePage() {
       <Services />
       <Approach />
       <BlogPreview />
-      <Contact />
+      <Contact contactEmail={getContactEmail()} />
     </>
   );
 }

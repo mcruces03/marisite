@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Globe2, Instagram, Mail } from "lucide-react";
+import { getContactEmail } from "@/lib/site";
 import { getInstagramLabel, getInstagramUrl } from "@/lib/social";
 
 export function Footer() {
   const instagramUrl = getInstagramUrl();
   const instagramLabel = getInstagramLabel();
+  const emailUser = getContactEmail();
 
   return (
     <footer className="bg-[#2D372B] text-[#FDFBF7] mt-32" data-testid="footer">
@@ -24,13 +26,15 @@ export function Footer() {
           <ul className="space-y-3 text-sm font-light">
             <li className="flex items-start gap-2">
               <Mail className="mt-1 size-[14px] text-[#D4A373]" aria-hidden />
-              <a
-                href="mailto:marucb03@gmail.com"
-                className="hover:text-[#D4A373] transition-colors break-all"
-                data-testid="footer-email"
-              >
-                marucb03@gmail.com
-              </a>
+              {emailUser ? (
+                <a
+                  href={`mailto:${emailUser}`}
+                  className="hover:text-[#D4A373] transition-colors break-all"
+                  data-testid="footer-email"
+                >
+                  {emailUser}
+                </a>
+              ) : null}
             </li>
             <li className="flex items-start gap-2">
               <Globe2 className="mt-1 size-[14px] text-[#D4A373]" aria-hidden />

@@ -5,11 +5,14 @@ import type { FormEvent as ReactFormEvent } from "react";
 import { Instagram, Mail, Send } from "lucide-react";
 import { getInstagramLabel, getInstagramUrl } from "@/lib/social";
 
-const CONTACT_EMAIL = "marucb03@gmail.com";
 const INSTAGRAM_URL = getInstagramUrl();
 const INSTAGRAM_LABEL = getInstagramLabel();
 
-export function Contact() {
+type ContactProps = Readonly<{
+  contactEmail?: string;
+}>;
+
+export function Contact({ contactEmail }: ContactProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
     "idle"
   );
@@ -87,16 +90,18 @@ export function Contact() {
           </p>
 
           <div className="space-y-4 mt-10">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="flex items-center gap-3 text-[#2D372B] hover:text-[#B2845A] transition-colors group"
-              data-testid="contact-email-link"
-            >
-              <span className="w-10 h-10 rounded-full bg-[#FDFBF7] border border-[#F4EAD5] flex items-center justify-center group-hover:bg-[#D4A373] group-hover:text-[#FDFBF7] transition-all">
-                <Mail className="size-4" aria-hidden />
-              </span>
-              <span className="font-light">{CONTACT_EMAIL}</span>
-            </a>
+            {contactEmail ? (
+              <a
+                href={`mailto:${contactEmail}`}
+                className="flex items-center gap-3 text-[#2D372B] hover:text-[#B2845A] transition-colors group"
+                data-testid="contact-email-link"
+              >
+                <span className="w-10 h-10 rounded-full bg-[#FDFBF7] border border-[#F4EAD5] flex items-center justify-center group-hover:bg-[#D4A373] group-hover:text-[#FDFBF7] transition-all">
+                  <Mail className="size-4" aria-hidden />
+                </span>
+                <span className="font-light">{contactEmail}</span>
+              </a>
+            ) : null}
             {INSTAGRAM_URL ? (
               <a
                 href={INSTAGRAM_URL}
