@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  /* Casa Uma — Organic & Earthy */
+  --cu-cream: #FDFBF7;
+  --cu-beige: #F4EAD5;
+  --cu-clay: #D4A373;
+  --cu-clay-deep: #B2845A;
+  --cu-sage: #CCD5AE;
+  --cu-sage-deep: #A8B28C;
+  --cu-olive-dark: #2D372B;
+  --cu-olive-muted: #5A6658;
+  --cu-accent: #E9EDC9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cu-cream);
+  color: var(--cu-olive-dark);
+  font-feature-settings: "ss01", "ss02";
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-7xl px-6 lg:px-10;
+}
+
+.prose-casa {
+  @apply prose prose-neutral max-w-none prose-headings:font-serif prose-headings:text-forest prose-p:text-forest/90 prose-a:text-terracotta hover:prose-a:text-peach prose-strong:text-forest prose-blockquote:text-forest/80;
+}
+
+/* Slow entrance animation */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.9s ease-out both;
+}
+.rise-in-1 {
+  animation-delay: 0.1s;
+}
+.rise-in-2 {
+  animation-delay: 0.25s;
+}
+.rise-in-3 {
+  animation-delay: 0.4s;
+}
+.rise-in-4 {
+  animation-delay: 0.55s;
+}
+
+/* Slow underline link */
+.cu-link {
+  position: relative;
+  display: inline-block;
+  color: var(--cu-olive-dark);
+  transition: color 300ms ease;
+}
+.cu-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cu-link:hover::after {
+  transform: scaleX(1);
+}
+
+.cu-btn-primary {
+  background: var(--cu-olive-dark);
+  color: var(--cu-cream);
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 300ms ease, transform 300ms ease;
+  cursor: pointer;
+  border: none;
+}
+.cu-btn-primary:hover {
+  background: var(--cu-clay-deep);
+  transform: translateY(-1px);
+}
+
+.cu-btn-secondary {
+  background: transparent;
+  color: var(--cu-olive-dark);
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--cu-olive-dark);
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+.cu-btn-secondary:hover {
+  background: var(--cu-olive-dark);
+  color: var(--cu-cream);
+}
+
+/* Soft decorative divider */
+.cu-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--cu-clay);
+  display: block;
+}
+
+.cu-input {
+  width: 100%;
+  background: #FDFBF7;
+  border: 1px solid #E9DCC4;
+  border-radius: 0.9rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #2D372B;
+  outline: none;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+.cu-input:focus {
+  border-color: #D4A373;
+  box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.18);
+}
